@@ -18,5 +18,17 @@ pipeline {
                 sh 'bash Go/scripts/test.sh'  // Run the test.sh
             }
         }
+        stage("Deploy") {
+            when {
+                anyOf {
+                    branch 'main';
+                    branch 'develop';
+
+                }
+            }
+            steps {
+                sh 'export JENKINS_NODE_COOKIE=do_not_kill ; bash Go/scripts/deploy.sh'
+            }
+        }
     }
 }
