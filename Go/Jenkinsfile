@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    tools { go 'go-1.16.7' }
+
+    environment {
+        ENV = "${env.BRANCH_NAME == 'main' ? 'PROD' : 'DEV'}"
+    }
+
+    stage('Build') {
+        steps {
+            sh 'bash scripts/build.sh' //Run the build.sh
+
+        }
+    }
+    stage('Test') {
+        steps {
+            sh 'bash scripts/test.sh'  // Run the test.sh
+        }
+    }
+}
