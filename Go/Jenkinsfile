@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    tools { go 'go-1.19' }
+
+    environment {
+        ENV = "${env.BRANCH_NAME == 'main' ? 'PROD' : 'DEV'}"
+        BRANCH = "${env.BRANCH_NAME}" // This is for deploy
+    }
+
+    stages {
+        stage("Build") {
+            steps {
+                sh 'bash Go/scripts/build.sh' //Run the build.sh
+                }
+        }
+    
+        stage("Test") {
+            steps {
+                sh 'bash Go/scripts/test.sh'  // Run the test.sh
+            }
+        }
+        stage("Deploy") {
+            when {
+                anyOf {
+                    branch 'main';
+                    branch 'develop'
+
+                }
+            }
+            steps {
+                sh 'export JENKINS_NODE_COOKIE=do_not_kill ; bash Go/scripts/deploy.sh'
+            }
+        }
+    }
+}
