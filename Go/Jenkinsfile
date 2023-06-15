@@ -6,15 +6,16 @@ pipeline {
         ENV = "${env.BRANCH_NAME == 'main' ? 'PROD' : 'DEV'}"
     }
 
-    stage('Build') {
-        steps {
-            sh 'bash scripts/build.sh' //Run the build.sh
-
+    stages {
+        stage ('Build') {
+            steps {
+                sh 'bash scripts/build.sh' //Run the build.sh
+                }
         }
     }
-    stage('Test') {
-        steps {
-            sh 'bash scripts/test.sh'  // Run the test.sh
+        stage('Test') {
+            steps {
+                sh 'bash scripts/test.sh'  // Run the test.sh
+            }
         }
-    }
 }
