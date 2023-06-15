@@ -22,12 +22,13 @@ pipeline {
             when {
                 anyOf {
                     branch 'main';
-                    branch 'develop';
+                    branch 'develop'
 
                 }
             }
             steps {
-                sh 'export JENKINS_NODE_COOKIE=do_not_kill ; bash Go/scripts/deploy.sh'
+                sh 'export JENKINS_NODE_COOKIE=do_not_kill ;
+                bash Go/scripts/deploy.sh'
             }
         }
     }
