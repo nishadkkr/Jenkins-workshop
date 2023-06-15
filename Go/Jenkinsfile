@@ -7,13 +7,13 @@ pipeline {
     }
 
     stages {
-        stage ('Build') {
+        stage("Build") {
             steps {
                 sh 'bash scripts/build.sh' //Run the build.sh
                 }
         }
     }
-        stage('Test') {
+        stage("Test") {
             steps {
                 sh 'bash scripts/test.sh'  // Run the test.sh
             }
