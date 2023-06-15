@@ -12,10 +12,11 @@ pipeline {
                 sh 'bash scripts/build.sh' //Run the build.sh
                 }
         }
-    }
+    
         stage("Test") {
             steps {
                 sh 'bash scripts/test.sh'  // Run the test.sh
             }
         }
+    }
 }
