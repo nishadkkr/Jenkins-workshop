@@ -48,7 +48,7 @@ pipeline {
         always {
             slackSend channel: '#general',
                     color: "${currentBuild.currentResult == 'SUCCESS' ? 'good' : 'danger'}",
-                    message: "Build for job ${<env.JOB_NAME} finished with status ${currentBuild.currentResult} - (<${env.BUILD_URL}|Open>)"
+                    message: "Build for job ${env.JOB_NAME} finished with status ${currentBuild.currentResult} - (<${env.BUILD_URL}|Open>)"
         }
     }
 }
