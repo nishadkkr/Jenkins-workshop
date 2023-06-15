@@ -1,3 +1,3 @@
 #!/bin/bash
 echo "*** Testing the app ..."
-go fmt *.go
+go fmt Go/*.go
