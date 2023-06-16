@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', changelog: false, credentialsId: 'github-cred', poll: false, url: 'https://github.com/p-nishad/Jenkins-workshop.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                nodejs(nodeJSInstallationName: 'node-lts') {
+                    sh 'node --version'
+                    sh 'npm --version'
+                    sh 'npm install'
+                    sh 'npm run build'
+                }
+            }
+        }
+    }
+    post {
+        success {
+            archiveArtifacts artifacts: 'build/**', fingerprint: true
+            }
+        }
+}
