@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                dir('/var/lib/jenkins/workspace/Customer Portal') { 
+                dir('Customer-Portal') { 
                     nodejs(nodeJSInstallationName: 'node-lts') {
                         sh 'node --version'
                         sh 'npm --version'
