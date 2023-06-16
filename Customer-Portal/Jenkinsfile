@@ -12,6 +12,7 @@ pipeline {
                 nodejs(nodeJSInstallationName: 'node-lts') {
                     sh 'node --version'
                     sh 'npm --version'
+		    sh 'cd Customer-Portal
                     sh 'npm install'
                     sh 'npm run build'
                 }
