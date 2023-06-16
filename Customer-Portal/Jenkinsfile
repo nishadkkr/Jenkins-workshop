@@ -14,6 +14,7 @@ pipeline {
                         sh 'node --version'
                         sh 'npm --version'
                         sh 'npm install'
+                        sh 'npx update-browserslist-db@latest'
                         sh 'npm run build'
                         }
                 }
