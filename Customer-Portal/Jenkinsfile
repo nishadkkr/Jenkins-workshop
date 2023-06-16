@@ -9,12 +9,14 @@ pipeline {
         }
         stage('Build') {
             steps {
-                nodejs(nodeJSInstallationName: 'node-lts') {
-                    sh 'node --version'
-                    sh 'npm --version'
-		            sh 'cd Customer-Portal'
-                    sh 'npm install'
-                    sh 'npm run build'
+                dir('/var/lib/jenkins/workspace/Customer Portal/package.json') { 
+                    nodejs(nodeJSInstallationName: 'node-lts') {
+                        sh 'node --version'
+                        sh 'npm --version'
+                        sh 'cd Customer-Portal'
+                        sh 'npm install'
+                        sh 'npm run build'
+                        }
                 }
             }
         }
