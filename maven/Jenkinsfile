@@ -8,8 +8,10 @@ pipeline {
         }
         stage("Code Quality Check") {
             steps {
+                dir('maven') { 
                 withSonarQubeEnv(installationName : 'my-sonarcloud', credentialsId : 'sonar-token') {
                     sh "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.organization=timp"
+                    }
                 }
             }
         }
@@ -31,6 +33,7 @@ pipeline {
         stage("Send Notification") {
             steps {
                 echo("slack")
+                }
             }
         }
     }
