@@ -6,9 +6,11 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/develop']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/p-nishad/Jenkins-workshop']]])
             }
         }
-        stage("Code Analysis") {
+        stage("Code Quality Check") {
             steps {
-                echo("Sonar")
+                withSonarQubeEnv(installationName : 'my-sonarcloud', credentialsId : 'sonar-token') {
+                    sh "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.organization=timp"
+                }
             }
         }
         stage("Security Scan") {
