@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage("Code Checkout from Git") {
             steps { 
-                checkout([$class: 'GitSCM', extensions: [], userRemoteConfigs: [[url: 'https://github.com/p-nishad/Jenkins-workshop']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/develop']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/p-nishad/Jenkins-workshop']]])
             }
         }
         stage("Code Analysis") {
