@@ -33,7 +33,6 @@ pipeline {
         stage("Send Notification") {
             steps {
                 echo("slack")
-                }
             }
         }
     }
