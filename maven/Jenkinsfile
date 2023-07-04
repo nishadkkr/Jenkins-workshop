@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    stages {
+        stage("Code Checkout from Git") {
+            steps { 
+                git 'https://github.com/p-nishad/Jenkins-workshop.git'
+            }
+        }
+        stage("Code Analysis") {
+            steps {
+                echo("Sonar")
+            }
+        }
+        stage("Security Scan") {
+            steps {
+                echo("scan")
+            }
+        }
+        stage("Build") {
+            steps {
+                echo("Build")
+            }
+        }
+        stage("Deploy") {
+            steps {
+                echo("deploy")
+            }
+        }
+        stage("Send Notification") {
+            steps {
+                echo("slack")
+            }
+        }
+    }
+}
