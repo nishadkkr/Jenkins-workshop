@@ -10,7 +10,7 @@ pipeline {
             steps {
                 dir('maven') { 
                 withSonarQubeEnv(installationName : 'my-sonarcloud', credentialsId : 'sonar-token') {
-                    sh "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.organization=CHANGE-ME -Dsonar.projectKey=CHANGE-ME"
+                    sh "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.organization=timp "
                     }
                 }
             }
